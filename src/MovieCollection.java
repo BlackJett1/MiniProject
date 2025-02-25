@@ -72,22 +72,30 @@ public class MovieCollection {
     }
 
     private void importData() {
-        try (BufferedReader br = new BufferedReader(new FileReader("movies_data.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/movies_data.csv"))) {
             String line;
             br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] fields = line.split(",");
-                String movie = fields[0];
-                int runtime = Integer.parseInt(fields[1]);
-                String director = fields[2];
-                String[] cast = fields[3].split("\\|");
-                String overview = fields[4];
-                double userRating = Double.parseDouble(fields[5]);
+                if (fields.length == 6) {
+                    String movie = fields[0];
+                    int runtime = Integer.parseInt(fields[1]);
+                    String director = fields[2];
+                    String[] cast = fields[3].split("\\|");
+                    String overview = fields[4];
+                    double userRating = Double.parseDouble(fields[5]);
                 Movie movie1 = new Movie(movie, cast, director, overview, runtime, userRating);
                 list.add(movie1);
+            } else {
+                    System.out.println("Skipped malformed line: "+ line);
+                }
             }
+            System.out.println("Data import completed. Number of movies: "+ list.size());
         } catch (IOException e) {
             System.out.println("Error reading the file.");
+            e.printStackTrace();
+        } catch (NumberFormatException e) {
+            System.out.println("Error parsing numeric data. ");
             e.printStackTrace();
         }
     }
