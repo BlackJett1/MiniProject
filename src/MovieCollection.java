@@ -66,4 +66,15 @@ public class MovieCollection {
             e.printStackTrace();
         }
     }
+
+    private  void showMovieDetails(Movie movie) {
+        System.out.println("Title: "+ movie.getMovie());
+        System.out.println("Cast: "+ String.join(", ", movie.getCast()));
+        System.out.println("Director: "+ movie.getDirector());
+        System.out.println("OverView: "+ movie.getOverview());
+        System.out.println("Runtime: "+movie.getRuntime()+ " minutes");
+        System.out.println("User Rating: "+ movie.getUserRating());
+
+
+    }
 }
