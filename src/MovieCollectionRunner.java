@@ -1,6 +1,7 @@
-import  java.util.Scanner;
+import java.util.Scanner;
 public class MovieCollectionRunner {
     public static void main(String[] args) {
+
         MovieCollection collection = new MovieCollection();
     }
 }
