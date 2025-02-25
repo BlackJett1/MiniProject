@@ -25,7 +25,7 @@ public class MovieCollection {
                 String[] cast = fields[3].split("\\|");
                 String overview = fields[4];
                 double userRating = Double.parseDouble(fields[5]);
-                Movie movie1 = new Movie(movie, cast, director, overview, userRating);
+                Movie movie1 = new Movie(movie, cast, director, overview, runtime, userRating);
                 list.add(movie1);
             }
         } catch (IOException e) {
