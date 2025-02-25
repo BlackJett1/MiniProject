@@ -74,6 +74,7 @@ public class MovieCollection {
     private void importData() {
         try (BufferedReader br = new BufferedReader(new FileReader("movies_data.csv"))) {
             String line;
+            br.readLine();
             while ((line = br.readLine()) != null) {
                 String[] fields = line.split(",");
                 String movie = fields[0];
