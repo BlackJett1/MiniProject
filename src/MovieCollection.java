@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -27,6 +28,9 @@ public class MovieCollection {
                 Movie movie1 = new Movie(movie, cast, director, overview, userRating);
                 list.add(movie1);
             }
+        } catch (IOException e) {
+            System.out.println("Error reading the file.");
+            e.printStackTrace();
         }
     }
 }
