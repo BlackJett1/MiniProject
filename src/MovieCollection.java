@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Scanner;
 public class MovieCollection {
     private Scanner scan = new Scanner(System.in);
@@ -40,7 +40,31 @@ public class MovieCollection {
     }
 
     private void searchTitles(){
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter part of title: ");
+            String search =scanner.next().toLowerCase();
 
+            ArrayList<Movie> matchMovies = new ArrayList<>();
+            for(Movie movie : list) {
+                if(movie.getMovie().toLowerCase().contains(search)) {
+                    matchMovies.add(movie);
+                }
+            }
+            if (matchMovies.isEmpty()){
+                System.out.println("No matches found.");
+
+            } else {
+                matchMovies.sort(Comparator.comparing(Movie::getMovie));
+                for (int i = 0; i < matchMovies.size();i ++) {
+                    System.out.println((i +1)+". "+matchMovies.get(i).getMovie());
+
+                }
+                System.out.println("Enter the number of the movie to see more details: ");
+                int choice = scanner.nextInt() -1;
+                if(choice >= 0 && choice < matchMovies.size()){
+                    showMovieDetails(matchMovies.get(choice));
+                }
+            }
     }
 
     private void searchCast(){
